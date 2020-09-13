@@ -27,6 +27,18 @@ namespace _7._72_dat_editor
             InitializeComponent();
         }
 
+        private void CreateNewItem(object sender, RoutedEventArgs e)
+        {
+            DatManager.AddNewObject();
+            UpdateUI();
+        }
+
+        private void ShowAbout(object sender, RoutedEventArgs e)
+        {
+
+            MessageBox.Show("This software was made by Nekiro. Thanks for using!", "About");
+        }
+
         private void LoadDat(object sender, RoutedEventArgs e)
         {
             DatManager.Items.Clear();
@@ -51,13 +63,11 @@ namespace _7._72_dat_editor
             {
                 if (DatManager.ParseDat(openFileDialog1.FileName))
                 {
-                    MessageBox.Show("Dat loaded.", "Success");
-                    UpdateUi();
+                    UpdateUI();
                 }
                 else
                 {
                     MessageBox.Show("Dat failed to load.", "Fail");
-                    UpdateUi();
                 }
             }
         }
@@ -92,8 +102,9 @@ namespace _7._72_dat_editor
             }
         }
 
-        private void UpdateUi()
+        private void UpdateUI()
         {
+            listBox.Items.Clear();
             Flags.Visibility = Visibility.Hidden;
             listBox.SelectedIndex = -1;
             foreach (var item in DatManager.Items)
@@ -114,7 +125,7 @@ namespace _7._72_dat_editor
 
             Ground.IsChecked = item.ground;
             GroundSpeed.Text = item.groundSpeed.ToString();
-            Clipp.IsChecked = item.clip;
+            Clip.IsChecked = item.clip;
             Topp.IsChecked = item.top;
             Container.IsChecked = item.container;
             Stackable.IsChecked = item.stackable;
@@ -134,7 +145,7 @@ namespace _7._72_dat_editor
             Hangable.IsChecked = item.hangable;
             Horizontal.IsChecked = item.horizontal;
             Vertical.IsChecked = item.vertical;
-            Rotatable.IsChecked = item.rotatable;
+            Rotable.IsChecked = item.rotatable;
             HasLight.IsChecked = item.hasLight;
             LightLevel.Text = item.lightLevel.ToString();
             LightColor.Text = item.lightColor.ToString();
@@ -144,7 +155,7 @@ namespace _7._72_dat_editor
             OffsetX.Text = item.offsetX.ToString();
             OffsetY.Text = item.offsetY.ToString();
             Elevation.IsChecked = item.hasHeight;
-            Heightt.Text = item.height.ToString();
+            Height.Text = item.height.ToString();
             Layer.IsChecked = item.layer;
             IdleAnimated.IsChecked = item.idleAnimated;
             Minimap.IsChecked = item.minimap;
@@ -170,8 +181,7 @@ namespace _7._72_dat_editor
             }
             else
             {
-                UInt16 val = 0;
-                if (!UInt16.TryParse(txtBox.Text, out val))
+                if (!ushort.TryParse(txtBox.Text, out ushort val))
                 {
                     txtBox.Text = "";
                 }
@@ -182,74 +192,74 @@ namespace _7._72_dat_editor
                 return;
             }
 
-            UInt16 temp = 0;
+            ushort temp;
             var item = DatManager.Items.ElementAt(listBox.SelectedIndex);
             if (txtBox.Name == "GroundSpeed")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.groundSpeed = temp;
                 }
             }
             else if (txtBox.Name == "ReadableLen")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.readableLenght = temp;
                 }
             }
             else if (txtBox.Name == "WritableLen")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.writableLenght = temp;
                 }
             }
             else if (txtBox.Name == "LightLevel")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.lightLevel = temp;
                 }
             }
             else if (txtBox.Name == "LightColor")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.lightColor = temp;
                 }
             }
             else if (txtBox.Name == "OffsetX")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.offsetX = temp;
                 }
             }
             else if (txtBox.Name == "OffsetY")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.offsetY = temp;
                 }
             }
-            else if (txtBox.Name == "Heightt")
+            else if (txtBox.Name == "Height")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.height = temp;
                 }
             }
             else if (txtBox.Name == "MinimapColor")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.minimapColor = temp;
                 }
             }
             else if (txtBox.Name == "Action")
             {
-                if (UInt16.TryParse(txtBox.Text, out temp))
+                if (ushort.TryParse(txtBox.Text, out temp))
                 {
                     item.actions = temp;
                 }

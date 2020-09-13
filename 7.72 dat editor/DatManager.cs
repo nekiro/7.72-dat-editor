@@ -55,6 +55,11 @@ namespace _7._72_dat_editor
             public uint actions;
             //actions?
             public bool groundItem;
+
+            public Item(uint id)
+            {
+                this.id = id;
+            }
         };
 
         public static List<Item> Items = new List<Item>();
@@ -79,8 +84,7 @@ namespace _7._72_dat_editor
                     uint id = 100;
                     while (id <= maxClientId)
                     {
-                        Item item = new Item();
-                        item.id = id;
+                        Item item = new Item(id);
                         do
                         {
                             flag = reader.ReadByte();
@@ -418,6 +422,12 @@ namespace _7._72_dat_editor
                 //
             }
            return true;
+        }
+
+        public static void AddNewObject()
+        {
+            Item newItem = new Item(Items.Last().id + 1);
+            Items.Add(newItem);
         }
     }
 }

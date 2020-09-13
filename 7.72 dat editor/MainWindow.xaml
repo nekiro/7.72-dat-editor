@@ -5,60 +5,121 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_7._72_dat_editor"
         mc:Ignorable="d"
-        Title="7.72 Dat Edit" Height="450" Width="887" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="7.72 Dat Edit" Height="450" Width="887" WindowStartupLocation="CenterScreen" ResizeMode="CanResize">
     <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="378" VerticalAlignment="Top" Width="310" Margin="0,41,0,0" SelectionChanged="SelectItem"/>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Width="879">
-            <MenuItem Header="Load Dat" Height="41" Width="85" Click="LoadDat"/>
-            <MenuItem Header="Save Dat" Height="41" Width="96" Click="SaveDat"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" x:Name="menu">
+            <MenuItem Header="Load Dat" Height="41" Width="65" Click="LoadDat"/>
+            <MenuItem Header="Save Dat" Height="41" Width="65" Click="SaveDat"/>
+            <MenuItem Header="Create New Item" Height="41" Width="100" Click="CreateNewItem"/>
+            <MenuItem Header="About" Height="41" Width="50" Click="ShowAbout"/>
         </Menu>
-        <Grid Name="Flags" Visibility="Hidden" HorizontalAlignment="Left" Height="378" Margin="315,46,0,-5" VerticalAlignment="Top" Width="564">
-            <CheckBox x:Name="Ground" Content="Ground" HorizontalAlignment="Left" Margin="28,22,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Clipp" Content="Clip" HorizontalAlignment="Left" Margin="28,56,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Topp" Content="Top" HorizontalAlignment="Left" Margin="28,90,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Container" Content="Container" HorizontalAlignment="Left" Margin="28,124,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Stackable" Content="Stackable" HorizontalAlignment="Left" Margin="28,158,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="ForceUse" Content="Force Use" HorizontalAlignment="Left" Margin="28,192,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="MultiUse" Content="Multi Use" HorizontalAlignment="Left" Margin="28,226,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Writable" Content="Writable" HorizontalAlignment="Left" Margin="28,260,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Readable" Content="Readable" HorizontalAlignment="Left" Margin="28,294,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="FluidContainer" Content="Fluid Container" HorizontalAlignment="Left" Margin="28,328,0,0" VerticalAlignment="Top" Height="29" Width="125" Click="ToggleFlag" FontSize="14"/>
-            <TextBox x:Name="GroundSpeed" HorizontalAlignment="Left" Height="23" Margin="111,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" TextChanged="SpellCheck"/>
-            <TextBox x:Name="ReadableLen" HorizontalAlignment="Left" Height="23" Margin="111,294,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" TextChanged="SpellCheck"/>
-            <TextBox x:Name="WritableLen" HorizontalAlignment="Left" Height="23" Margin="111,260,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" TextChanged="SpellCheck"/>
-            <CheckBox x:Name="Splash" Content="Splash" HorizontalAlignment="Left" Margin="186,22,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Blocking" Content="Blocking" HorizontalAlignment="Left" Margin="186,56,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Movable" Content="Movable" HorizontalAlignment="Left" Margin="186,90,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="BlocksMissile" Content="Blocks Missile" HorizontalAlignment="Left" Margin="186,124,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="BlocksPath" Content="Blocks Path" HorizontalAlignment="Left" Margin="186,158,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Pickupable" Content="Pickupable" HorizontalAlignment="Left" Margin="186,192,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Hangable" Content="Hangable" HorizontalAlignment="Left" Margin="186,226,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Horizontal" Content="Horizontal" HorizontalAlignment="Left" Margin="186,260,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Vertical" Content="Vertical" HorizontalAlignment="Left" Margin="186,294,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Rotatable" Content="Rotatable" HorizontalAlignment="Left" Margin="186,328,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="HasLight" Content="Has Light" HorizontalAlignment="Left" Margin="295,22,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="DontHide" Content="Don't Hide" HorizontalAlignment="Left" Margin="295,56,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="FloorChange" Content="Floor change" HorizontalAlignment="Left" Margin="295,90,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Offset" Content="Offset" HorizontalAlignment="Left" Margin="295,124,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Elevation" Content="Elevation" HorizontalAlignment="Left" Margin="295,158,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Layer" Content="Layer (Laying)" HorizontalAlignment="Left" Margin="295,192,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="IdleAnimated" Content="Idle Animated" HorizontalAlignment="Left" Margin="295,226,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Minimap" Content="Minimap" HorizontalAlignment="Left" Margin="295,260,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="Actions" Content="Actions" HorizontalAlignment="Left" Margin="295,294,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <CheckBox x:Name="FullGround" Content="Full Ground" HorizontalAlignment="Left" Margin="295,328,0,0" VerticalAlignment="Top" Height="29" Width="104" Click="ToggleFlag" FontSize="14"/>
-            <TextBox x:Name="LightLevel" HorizontalAlignment="Left" Height="23" Margin="399,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="SpellCheck"/>
-            <TextBox x:Name="LightColor" HorizontalAlignment="Left" Height="23" Margin="471,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="SpellCheck"/>
-            <TextBox x:Name="OffsetX" HorizontalAlignment="Left" Height="23" Margin="399,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="SpellCheck"/>
-            <TextBox x:Name="OffsetY" HorizontalAlignment="Left" Height="23" Margin="471,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="SpellCheck"/>
-            <TextBox x:Name="Heightt" HorizontalAlignment="Left" Height="23" Margin="399,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="SpellCheck"/>
-            <TextBox x:Name="MinimapColor" HorizontalAlignment="Left" Height="23" Margin="399,260,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="SpellCheck"/>
-            <Label x:Name="label" Content="X" HorizontalAlignment="Left" Margin="416,102,0,0" VerticalAlignment="Top" Width="22" Height="22"/>
-            <Label x:Name="label_Copy" Content="y&#xD;&#xA;" HorizontalAlignment="Left" Margin="486,101,0,0" VerticalAlignment="Top" Width="22" Height="29"/>
-            <Label x:Name="label_Copy1" Content="level" HorizontalAlignment="Left" Margin="404,0,0,0" VerticalAlignment="Top" Width="34" Height="32"/>
-            <Label x:Name="label_Copy2" Content="color" HorizontalAlignment="Left" Margin="475,0,0,0" VerticalAlignment="Top" Width="50" Height="32"/>
-            <TextBox x:Name="Action" HorizontalAlignment="Left" Height="23" Margin="399,294,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="54" TextChanged="SpellCheck"/>
-        </Grid>
-        <Label x:Name="label1" Content="Made by Nekiro, enjoy! :)" HorizontalAlignment="Left" Margin="623,0,0,0" VerticalAlignment="Top" Height="41" Width="256" FontSize="20" FontWeight="Bold"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="listBox" Grid.Column="0" SelectionChanged="SelectItem"/>
+            <Grid x:Name="Flags" Grid.Column="1" Visibility="Hidden" Margin="10,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- First Column -->
+                <CheckBox x:Name="Ground" Grid.Row="0" Content="Ground" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Clip" Grid.Row="1" Content="Clip" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Topp" Grid.Row="2" Content="Top" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Container" Grid.Row="3" Content="Container" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Stackable" Grid.Row="4" Content="Stackable" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="ForceUse" Grid.Row="5" Content="Force Use" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="MultiUse" Grid.Row="6" Content="Multi Use" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Writable" Grid.Row="7" Content="Writable" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Readable" Grid.Row="8" Content="Readable" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="FluidContainer" Grid.Row="9" Content="Fluid Container" Click="ToggleFlag" FontSize="10"/>
+                <!-- Second Column -->
+                <TextBox x:Name="GroundSpeed" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Height="22" Margin="15,0" TextChanged="SpellCheck"/>
+                <TextBox x:Name="WritableLen" Grid.Column="1" Grid.Row="7" VerticalAlignment="Top" Height="22" Margin="15,0" TextChanged="SpellCheck"/>
+                <TextBox x:Name="ReadableLen" Grid.Column="1" Grid.Row="8" VerticalAlignment="Top" Height="22" Margin="15,0" TextChanged="SpellCheck"/>
+                <!-- Third Column -->
+                <CheckBox x:Name="Splash" Grid.Column="2" Grid.Row="0" Content="Splash" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Blocking" Grid.Column="2" Grid.Row="1" Content="Blocking" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Movable" Grid.Column="2" Grid.Row="2" Content="Movable" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="BlocksMissile" Grid.Column="2" Grid.Row="3" Content="Blocks Missile" Click="ToggleFlag" FontSize="11"/>
+                <CheckBox x:Name="BlocksPath" Grid.Column="2" Grid.Row="4" Content="Blocks Path" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Pickupable" Grid.Column="2" Grid.Row="5" Content="Pickupable" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Hangable" Grid.Column="2" Grid.Row="6" Content="Hangable" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Horizontal" Grid.Column="2" Grid.Row="7" Content="Horizontal" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Vertical" Grid.Column="2" Grid.Row="8" Content="Vertical" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Rotable" Grid.Column="2" Grid.Row="9" Content="Rotable" Click="ToggleFlag" FontSize="14"/>
+                <!-- Fourth Column -->
+                <CheckBox x:Name="HasLight" Grid.Column="3" Grid.Row="0" Content="Has Light" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="DontHide" Grid.Column="3" Grid.Row="1" Content="Don't Hide" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="FloorChange" Grid.Column="3" Grid.Row="2" Content="Floor Change" Click="ToggleFlag" FontSize="12"/>
+                <CheckBox x:Name="Offset" Grid.Column="3" Grid.Row="3" Content="Offset" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Elevation" Grid.Column="3" Grid.Row="4" Content="Elevation" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Layer" Grid.Column="3" Grid.Row="5" Content="Layer (Laying)" Click="ToggleFlag" FontSize="12"/>
+                <CheckBox x:Name="IdleAnimated" Grid.Column="3" Grid.Row="6" Content="Idle Animated" Click="ToggleFlag" FontSize="12"/>
+                <CheckBox x:Name="Minimap" Grid.Column="3" Grid.Row="7" Content="Minimap" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="Actions" Grid.Column="3" Grid.Row="8" Content="Actions" Click="ToggleFlag" FontSize="14"/>
+                <CheckBox x:Name="FullGround" Grid.Column="3" Grid.Row="9" Content="Full Ground" Click="ToggleFlag" FontSize="14"/>
+                <!-- Fifth Column -->
+                <Grid Grid.Column="4" Grid.Row="0" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="level" Grid.Column="0"/>
+                    <TextBox x:Name="LightLevel" Grid.Column="1" Height="22" TextChanged="SpellCheck"/>
+                </Grid>
+                <Grid Grid.Column="4" Grid.Row="3" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="x" Grid.Column="0"/>
+                    <TextBox x:Name="OffsetX" Grid.Column="1" Height="22" TextChanged="SpellCheck"/>
+                </Grid>
+                <TextBox x:Name="Height" Grid.Column="4" Grid.Row="4" VerticalAlignment="Top" Height="22" Margin="15,0" TextChanged="SpellCheck"/>
+                <TextBox x:Name="MinimapColor" Grid.Column="4" Grid.Row="7" VerticalAlignment="Top" Height="22" Margin="15,0" TextChanged="SpellCheck"/>
+                <TextBox x:Name="Action" Grid.Column="4" Grid.Row="8" VerticalAlignment="Top" Height="22" Margin="15,0" TextChanged="SpellCheck"/>
+                <!-- Sixth Column -->
+                <Grid Grid.Column="5" Grid.Row="0" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="color" Grid.Column="0"/>
+                    <TextBox x:Name="LightColor" Grid.Column="1" Height="22" TextChanged="SpellCheck"/>
+                </Grid>
+                <Grid Grid.Column="5" Grid.Row="3" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="y" Grid.Column="0"/>
+                    <TextBox x:Name="OffsetY" Grid.Column="1" Height="22" TextChanged="SpellCheck"/>
+                </Grid>
 
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
